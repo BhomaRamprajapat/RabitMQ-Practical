@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: consumer-service
+
+  cloud:
+    function:
+      definition: receiveMessage
+    stream:
+      bindings:
+        receiveMessage-in-0:
+          destination: message-queue
+          group: ${spring.application.name}
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    connection-timeout: 10s
+
